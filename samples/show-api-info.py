@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import btceapi
 
-with btceapi.BTCEConnection() as connection:
+btce_domain = "api.liqui.io"
+
+with btceapi.BTCEConnection(btce_domain) as connection:
     info = btceapi.APIInfo(connection)
 
     print("Server time: %s" % info.server_time)

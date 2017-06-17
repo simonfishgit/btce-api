@@ -40,8 +40,7 @@ class APIResponseError(Exception):
 decimal.getcontext().rounding = decimal.ROUND_DOWN
 quanta = [decimal.Decimal("1e-%d" % i) for i in range(16)]
 
-btce_domain = "btc-e.com"
-
+#btce_domain = "btc-e.com"
 
 def parseJSONResponse(response):
     def parse_decimal(var):
@@ -65,7 +64,8 @@ BODY_COOKIE_RE = re.compile(r'document\.cookie="a=([a-f0-9]{32});path=/;";')
 
 
 class BTCEConnection(object):
-    def __init__(self, timeout=30):
+    def __init__(self, endpoint='"btc-e.com"', timeout=30):
+        self.endpoint = endpoint
         self.conn = None
         self.cookie = None
         self._timeout = timeout
@@ -87,9 +87,9 @@ class BTCEConnection(object):
                 self.conn = httplib.HTTPSConnection(match.group(1),
                                                     port=match.group(2),
                                                     timeout=self._timeout)
-            self.conn.set_tunnel(btce_domain)
+            self.conn.set_tunnel(self.endpoint)
         else:
-            self.conn = httplib.HTTPSConnection(btce_domain, timeout=self._timeout)
+            self.conn = httplib.HTTPSConnection(self.endpoint, timeout=self._timeout)
         self.cookie = None
 
     def close(self):

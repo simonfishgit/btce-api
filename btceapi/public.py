@@ -7,7 +7,7 @@ from collections import namedtuple
 from . import common, scraping
 
 PairInfoBase = namedtuple("PairInfoBase",
-    ["decimal_places", "min_price", "max_price", "min_amount", "hidden", "fee"])
+    ["decimal_places", "min_price", "max_price", "min_amount", "max_amount", "hidden", "fee", "min_total"])
 
 
 class PairInfo(PairInfoBase):
@@ -58,6 +58,7 @@ class APIInfo(object):
         self.pairs = {}
         currencies = set()
         for name, data in pairs.items():
+            print name, data
             self.pairs[name] = PairInfo(**data)
             a, b = name.split(u"_")
             currencies.add(a)
