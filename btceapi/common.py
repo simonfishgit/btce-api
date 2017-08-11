@@ -64,7 +64,7 @@ BODY_COOKIE_RE = re.compile(r'document\.cookie="a=([a-f0-9]{32});path=/;";')
 
 
 class BTCEConnection(object):
-    def __init__(self, endpoint='"btc-e.com"', timeout=30):
+    def __init__(self, endpoint='btc-e.com', timeout=30):
         self.endpoint = endpoint
         self.conn = None
         self.cookie = None

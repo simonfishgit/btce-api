@@ -9,8 +9,9 @@ except ImportError:
 
 
 class BTCEScraper(HTMLParser):
-    def __init__(self):
+    def __init__(self, endpoint='btc-e.com'):
         HTMLParser.__init__(self)
+        self.endpoint = endpoint
         self.messageId = None
         self.messageTime = None
         self.messageUser = None
@@ -78,11 +79,11 @@ class BTCEScraper(HTMLParser):
                     # If the <a> tag for dev/support/admin is present, then
                     # they are online (otherwise nothing appears on the
                     # page for them).
-                    if v == 'https://btc-e.com/profile/1':
+                    if v == 'https://' + self.endpoint + '/profile/1':
                         self.devOnline = True
-                    elif v == 'https://btc-e.com/profile/2':
+                    elif v == 'https://' + self.endpoint + '/profile/2':
                         self.supportOnline = True
-                    elif v == 'https://btc-e.com/profile/3':
+                    elif v == 'https://' + self.endpoint + '/profile/3':
                         self.adminOnline = True
         elif tag == 'span':
             if self.messageId is not None:

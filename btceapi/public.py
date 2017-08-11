@@ -58,7 +58,6 @@ class APIInfo(object):
         self.pairs = {}
         currencies = set()
         for name, data in pairs.items():
-            print name, data
             self.pairs[name] = PairInfo(**data)
             a, b = name.split(u"_")
             currencies.add(a)
