@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 
-import btceapi
+import liqui_client
 
 if len(sys.argv) < 2:
     print("Usage: print-trans-history.py <key file>")
@@ -10,15 +10,15 @@ if len(sys.argv) < 2:
 
 key_file = sys.argv[1]
 # NOTE: In future versions, resaveOnDeletion will default to True.
-with btceapi.KeyHandler(key_file) as handler:
+with liqui_client.KeyHandler(key_file) as handler:
     if not handler.keys:
         print("No keys in key file.")
     else:
         for key in handler.keys:
             print("Printing info for key %s" % key)
 
-            with btceapi.BTCEConnection() as connection:
-                t = btceapi.TradeAPI(key, handler, connection)
+            with liqui_client.BTCEConnection() as connection:
+                t = liqui_client.TradeAPI(key, handler, connection)
 
                 try:
                     th = t.transHistory()

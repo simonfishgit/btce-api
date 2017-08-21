@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 import pylab
-import btceapi
+import liqui_client
 
 # If an argument is provided to this script, it will be interpreted
 # as a currency pair for which history should be displayed. Otherwise
@@ -14,7 +14,7 @@ else:
     print("No currency pair provided, defaulting to btc_usd")
     pair = "btc_usd"
     
-history = btceapi.getTradeHistory(pair)
+history = liqui_client.getTradeHistory(pair)
 
 print(len(history))
 

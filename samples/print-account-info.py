@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import btceapi
+import liqui_client
 
 if len(sys.argv) < 2:
     print("Usage: print-account-info.py <key file>")
@@ -8,15 +8,15 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 key_file = sys.argv[1]
-with btceapi.KeyHandler(key_file) as handler:
+with liqui_client.KeyHandler(key_file) as handler:
     if not handler.keys:
         print("No keys in key file.")
     else:
         for key in handler.keys:
             print("Printing info for key {}".format(key))
 
-            with btceapi.BTCEConnection() as connection:
-                t = btceapi.TradeAPI(key, handler, connection)
+            with liqui_client.BTCEConnection() as connection:
+                t = liqui_client.TradeAPI(key, handler, connection)
 
                 try:
                     r = t.getInfo()

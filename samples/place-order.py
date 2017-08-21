@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import decimal
 import sys
-import btceapi
+import liqui_client
 
 # This sample shows how to place a single trade order for each key in the provided file.
 
@@ -20,15 +20,15 @@ order_type = sys.argv[3]
 amount = decimal.Decimal(sys.argv[4])
 price = decimal.Decimal(sys.argv[5])
 
-with btceapi.KeyHandler(key_file) as handler:
+with liqui_client.KeyHandler(key_file) as handler:
     if not handler.keys:
         print("No keys in key file.")
     else:
         for key in handler.keys:
             print("Placing order for key {}".format(key))
 
-            with btceapi.BTCEConnection() as connection:
-                t = btceapi.TradeAPI(key, handler, connection)
+            with liqui_client.BTCEConnection() as connection:
+                t = liqui_client.TradeAPI(key, handler, connection)
 
                 try:
                     result = t.trade(pair, order_type, price, amount)

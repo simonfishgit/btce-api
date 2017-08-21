@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-import btceapi
+import liqui_client
 
 btce_domain = "api.liqui.io"
 
-with btceapi.BTCEConnection(btce_domain) as connection:
-    info = btceapi.APIInfo(connection)
+with liqui_client.BTCEConnection(btce_domain) as connection:
+    info = liqui_client.APIInfo(connection)
 
     mainPage = info.scrapeMainPage()
     for message in mainPage.messages:

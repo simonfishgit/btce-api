@@ -1,9 +1,14 @@
-btce-api
+liqui-client
 ========
 
 [![Build Status](https://travis-ci.org/CodeReclaimers/btce-api.svg)](https://travis-ci.org/CodeReclaimers/btce-api)
 [![Code Issues](https://www.quantifiedcode.com/api/v1/project/9d2bd596b16043119953f912c0a46d35/badge.svg)](https://www.quantifiedcode.com/app/project/9d2bd596b16043119953f912c0a46d35)
 [![Coverage Status](https://coveralls.io/repos/github/CodeReclaimers/btce-api/badge.svg)](https://coveralls.io/github/CodeReclaimers/btce-api)
+
++This library is build on top of CodeReclaimers' forsaken BTC-e API library in order to support [Liqui API](https://liqui.io/api) which is almost the same.
+ +
+ +The rest readme text is from original library.
+
 
 This library provides a wrapper (hopefully a convenient one) around the public
 and trading APIs of the BTC-e.com exchange site.  So that you don't have to 
@@ -23,7 +28,7 @@ those that have donated!), please send some coins here:
     BTC 16vnh6gwFYLGneBa8JUk7NaXpEt3Qojqs1
     DOGE D5jNqRjwxhDZT4hkG8yoGkseP576smjyNx
 
-The following functions in the btceapi module access the public API and/or 
+The following functions in the liqui_client module access the public API and/or 
 scrape content from the main page, and do not require any user account 
 information:
 
@@ -54,7 +59,7 @@ All of the functions above also take an optional 'connection' argument, which
 should be an instance of BTCEConnection.  This will speed up multiple function
 calls, as a new connection will not have to be created for every call.   
 
-The TradeAPI class in the btceapi module accesses the trading API, and requires
+The TradeAPI class in the liqui_client module accesses the trading API, and requires
 a KeyHandler object.  The KeyHandler manages your API key and secret values 
 (found under "API Keys" on the Profile page), stored in a text file. For 
 instructions on creating this text file, please see step 9 here:

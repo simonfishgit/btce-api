@@ -1,6 +1,6 @@
 import unittest
 import tempfile
-from btceapi.keyhandler import KeyData, AbstractKeyHandler, KeyHandler, InvalidNonceException
+from liqui_client.keyhandler import KeyData, AbstractKeyHandler, KeyHandler, InvalidNonceException
 
 
 class TestKeyData(unittest.TestCase):

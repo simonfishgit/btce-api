@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import btceapi
+import liqui_client
 
 if len(sys.argv) < 2:
     print("Usage: compute-account-value.py <key file>")
@@ -8,21 +8,21 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 key_file = sys.argv[1]
-with btceapi.KeyHandler(key_file) as handler:
+with liqui_client.KeyHandler(key_file) as handler:
     if not handler.keys:
         print("No keys in key file.")
     else:
         for key in handler.keys:
             print("Computing value for key %s" % key)
-            with btceapi.BTCEConnection() as connection:
-                t = btceapi.TradeAPI(key, handler, connection)
+            with liqui_client.BTCEConnection() as connection:
+                t = liqui_client.TradeAPI(key, handler, connection)
 
                 try:
                     r = t.getInfo()
 
                     exchange_rates = {}
                     for pair in t.apiInfo.pair_names:
-                        asks, bids = btceapi.getDepth(pair)
+                        asks, bids = liqui_client.getDepth(pair)
                         exchange_rates[pair] = bids[0][0]
 
                     btc_total = 0
@@ -69,7 +69,7 @@ with btceapi.KeyHandler(key_file) as handler:
                     for fiat in ("usd", "eur", "rur"):
                         fiat_pair = "btc_%s" % fiat
                         fiat_total = btc_total * exchange_rates[fiat_pair]
-                        fiat_str = btceapi.formatCurrencyDigits(fiat_total, 2)
+                        fiat_str = liqui_client.formatCurrencyDigits(fiat_total, 2)
                         print("\t                       %s %s" % (fiat_str,
                                                                   fiat.upper()))
 

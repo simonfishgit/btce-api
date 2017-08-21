@@ -10,7 +10,7 @@ matplotlib.rcParams['toolbar'] = 'None'
 import matplotlib.pyplot as plt
 import pylab
 
-import btceapi
+import liqui_client
 
 
 class Chart(object):
@@ -19,7 +19,7 @@ class Chart(object):
         self.base = symbol.split("_")[0].upper()
         self.alt = symbol.split("_")[1].upper()
 
-        self.ticks = btceapi.getTradeHistory(self.symbol)
+        self.ticks = liqui_client.getTradeHistory(self.symbol)
         self.last_tid = max([t.tid for t in self.ticks])
 
         self.fig = plt.figure()
@@ -49,7 +49,7 @@ class Chart(object):
         return [(t.timestamp, t.price) for t in self.ticks if t.type == u'ask']
 
     def update(self, event):
-        ticks = btceapi.getTradeHistory(self.symbol)
+        ticks = liqui_client.getTradeHistory(self.symbol)
         self.ticks += [t for t in ticks if t.tid > self.last_tid]
 
         for t in ticks:

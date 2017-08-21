@@ -3,7 +3,7 @@ import sys
 import pylab
 import numpy as np
 
-import btceapi
+import liqui_client
 
 # If an argument is provided to this script, it will be interpreted
 # as a currency pair for which depth should be displayed. Otherwise
@@ -16,7 +16,7 @@ else:
     print("No currency pair provided, defaulting to btc_usd")
     pair = "btc_usd"
 
-asks, bids = btceapi.getDepth(pair)
+asks, bids = liqui_client.getDepth(pair)
 
 print(len(asks), len(bids))
 

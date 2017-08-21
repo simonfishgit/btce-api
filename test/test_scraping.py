@@ -2,14 +2,14 @@ from datetime import datetime
 import sys
 import unittest
 
-import btceapi
+import liqui_client
 
 
 class TestScraping(unittest.TestCase):
 
     def test_scrape_main_page(self):
-        with btceapi.BTCEConnection() as connection:
-            info = btceapi.APIInfo(connection)
+        with liqui_client.BTCEConnection() as connection:
+            info = liqui_client.APIInfo(connection)
             mainPage = info.scrapeMainPage()
 
             for message in mainPage.messages:

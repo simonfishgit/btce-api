@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-import btceapi
+import liqui_client
 
 # This sample shows use of a KeyHandler.  For each API key in the file
 # passed in as the first argument, all pending orders for the specified
@@ -17,15 +17,15 @@ key_file = sys.argv[1]
 pair = sys.argv[2]
 order_type = sys.argv[3]
 
-with btceapi.KeyHandler(key_file) as handler:
+with liqui_client.KeyHandler(key_file) as handler:
     if not handler.keys:
         print("No keys in key file.")
     else:
         for key in handler.keys:
             print("Canceling orders for key {}".format(key))
 
-            with btceapi.BTCEConnection() as connection:
-                t = btceapi.TradeAPI(key, handler, connection)
+            with liqui_client.BTCEConnection() as connection:
+                t = liqui_client.TradeAPI(key, handler, connection)
 
                 try:
                     # Get a list of orders for the given pair, and cancel the ones
