@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import liqui_client
 
-btce_domain = "api.liqui.io"
+domain = "api.liqui.io"
 
 attrs = ('high', 'low', 'avg', 'vol', 'vol_cur', 'last',
          'buy', 'sell', 'updated')
 
 print("Tickers:")
-connection = liqui_client.BTCEConnection(btce_domain)
+connection = liqui_client.BTCEConnection(domain)
 
 info = liqui_client.APIInfo(connection)
 for pair in info.pair_names:
