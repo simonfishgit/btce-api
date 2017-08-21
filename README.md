@@ -2,13 +2,11 @@ liqui-client
 ========
 
 [![Build Status](https://travis-ci.org/CodeReclaimers/btce-api.svg)](https://travis-ci.org/CodeReclaimers/btce-api)
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/9d2bd596b16043119953f912c0a46d35/badge.svg)](https://www.quantifiedcode.com/app/project/9d2bd596b16043119953f912c0a46d35)
 [![Coverage Status](https://coveralls.io/repos/github/CodeReclaimers/btce-api/badge.svg)](https://coveralls.io/github/CodeReclaimers/btce-api)
 
 +This library is build on top of CodeReclaimers' forsaken BTC-e API library in order to support [Liqui API](https://liqui.io/api) which is almost the same.
  +
  +The rest readme text is from original library.
-
 
 This library provides a wrapper (hopefully a convenient one) around the public
 and trading APIs of the BTC-e.com exchange site.  So that you don't have to 
